@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="seuimovel:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/seuimovel_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="seuimovel/web/Web2" />
+      <element id="javaee-facet-resources" facet="seuimovel/web/Web" />
+      <element id="javaee-facet-resources" facet="seuimovel/javaeeApplication/javaEEApplication2" />
+      <element id="javaee-facet-resources" facet="seuimovel/javaeeApplication/javaEEApplication" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="seuimovel" />
+          <element id="jpa-descriptors" facet="seuimovel/jpa/JPA" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
