@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Template</title>
-    <link rel="stylesheet" type="text/css" href="css/template-style.css">
-</head>
-<body>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8" />
+        <title>Template</title>
+        <link rel="stylesheet" type="text/css" href="css/template-style.css" />
+    </h:head>
+    <h:body>
+        <nav>
+            <div class="wrapper" style="height: 100%;">
+                <div id="user-icon-container">
+                    <img class="profile-icon" src="images/profile-icon.png" />
+                    <a class="btn action-btn">Entrar</a>
+                </div>
+                <img class="logo" src="images/home-icon.png" />
+            </div>
+        </nav>
 
-<nav>
-    <div class="wrapper" style="height: 100%;">
-        <div id="user-icon-container">
-            <img class="profile-icon" src="images/profile-icon.png">
-            <a class="btn action-btn">Entrar</a>
+        <div class="wrapper">
+            <input style="margin: 10px auto; width: 50%; display: block;" name="search-text" type="text" class="text-input" placeholder="Busque por um endereço" id="search-text" />
+            <button class="btn search-btn">
+                Buscar
+            </button>
+            <ui:insert name="page-body">Página de exemplo</ui:insert>
         </div>
-        <img class="logo" src="images/home-icon.png">
-    </div>
-</nav>
-
-<div class="wrapper">
-    <input style="margin: 10px auto; width: 50%; display: block;" name="search-text" type="text" class="text-input" placeholder="Busque por um endereço" id="search-text">
-    <button class="btn search-btn">
-        Buscar
-    </button>
-</div>
-
-</body>
+    </h:body>
 </html>
