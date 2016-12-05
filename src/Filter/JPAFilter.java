@@ -14,12 +14,10 @@ import java.io.IOException;
 public class JPAFilter implements Filter{
     private EntityManagerFactory factory;
 
-    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         this.factory = Persistence.createEntityManagerFactory("PersistenceUnit");
     }
 
-    @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         EntityManager manager = this.factory.createEntityManager();
         servletRequest.setAttribute("EntityManager", manager);
@@ -38,7 +36,6 @@ public class JPAFilter implements Filter{
         }
     }
 
-    @Override
     public void destroy() {
         this.factory.close();
     }

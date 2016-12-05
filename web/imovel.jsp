@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.*"%>
+<%@ page import="java.util.*, DAO.*, Model.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +27,14 @@
         <img class="logo" src="images/home-icon.png">
     </div>
 </nav>
+<%
+    ResidenceDAO dao = new ResidenceDAO();
+    List<Residence> residences = dao.findAll();
+
+    for (Residence residence : residences) { %>
+        <p><%residence.getAddress();%></p>
+    <% }
+%>
 <script>
     $(document).ready(function() {
         var total_images = 4;

@@ -2,16 +2,17 @@
   <artifact type="exploded-war" build-on-make="true" name="seuimovel:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/seuimovel_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="seuimovel/web/Web2" />
-      <element id="javaee-facet-resources" facet="seuimovel/web/Web" />
-      <element id="javaee-facet-resources" facet="seuimovel/javaeeApplication/javaEEApplication2" />
-      <element id="javaee-facet-resources" facet="seuimovel/javaeeApplication/javaEEApplication" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="seuimovel" />
           <element id="jpa-descriptors" facet="seuimovel/jpa/JPA" />
+          <element id="javaee-facet-classes" facet="seuimovel/web/Web" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Hibernate 5.2.3-5.2.3" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="seuimovel/web/Web" />
     </root>
   </artifact>
 </component>
