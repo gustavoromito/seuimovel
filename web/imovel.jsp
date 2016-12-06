@@ -18,15 +18,8 @@
 </head>
 <body>
 
-<nav>
-    <div class="wrapper" style="height: 100%;">
-        <div id="user-icon-container">
-            <img class="profile-icon" src="images/profile-icon.png">
-            <a class="btn action-btn">Entrar</a>
-        </div>
-        <img class="logo" src="images/home-icon.png">
-    </div>
-</nav>
+<%@include file="header.html" %>
+
 <%
     ResidenceDAO dao = new ResidenceDAO();
     List<Residence> residences = dao.findAll();
