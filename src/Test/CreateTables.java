@@ -1,6 +1,5 @@
 package Test;
 
-import Model.Residence;
 import Model.ResidenceType;
 import Model.SaleType;
 
