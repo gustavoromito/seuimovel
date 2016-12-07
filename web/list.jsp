@@ -21,16 +21,18 @@
     <%
         ResidenceDAO residenceDao = new ResidenceDAO();
         ResidenceFilter filter = new ResidenceFilter();
-        filter.setPrice(201, 201);
+        filter.setPrice(0, 200);
+        filter.setCountry("Brasil");
+        filter.setCity("Osasco");
         List<Residence> residences = residenceDao.get(filter);
 
         for (Residence residence : residences) { %>
             <div>
                 <p>Price <%=residence.getPrice()%></p>
                 <p>Country <%=residence.getCountry()%></p>
+                <p>Country <%=residence.getCity()%></p>
             </div>
         <% }
     %>
-
 </body>
 </html>

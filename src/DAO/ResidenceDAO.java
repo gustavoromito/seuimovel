@@ -3,8 +3,6 @@ package DAO;
 import Model.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ResidenceDAO {
@@ -24,22 +22,24 @@ public class ResidenceDAO {
     public List<Residence> get(ResidenceFilter filter) {
         TypedQuery<Residence> query = manager
                 .createQuery(
-                        "SELECT r FROM Residence r WHERE Price >= ? AND Price <= ? AND Country LIKE ?",
+                        "SELECT r FROM Residence r WHERE Price >= ? AND Price <= ? AND Country LIKE ? AND City = ?",
                         Residence.class);
 
         query.setParameter(1, filter.getPriceLower());
         query.setParameter(2, filter.getPriceBiggest());
         query.setParameter(3, filter.getCountry());
+        query.setParameter(4, filter.getCity());
 
         return query.getResultList();
     }
 
-    public void add(String address, double price, String country) {
+    public void add(String address, double price, String country, String city) {
         manager.getTransaction().begin();
         Residence residence = new Residence();
         residence.setAddress(address);
         residence.setPrice(price);
         residence.setCountry(country);
+        residence.setCity(city);
         manager.persist(residence);
         manager.getTransaction().commit();
     }
