@@ -241,4 +241,8 @@ public class Residence {
     public String getSaleType() {
         return SaleType.getName();
     }
+
+    public String getAddressFull() {
+        return getAddress() + ", " + getNumber() + " - " + getNeighborhood() + ", " + getCity() + " - " + getCountry();
+    }
 }

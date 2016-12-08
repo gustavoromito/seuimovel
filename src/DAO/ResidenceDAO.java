@@ -97,7 +97,7 @@ public class ResidenceDAO extends CustomDAO<Residence> {
         }
     }
 
-    public void add(SaleType saleType, ResidenceType residenceType, String address, double price, String country, String city, int bathroomsCount, int suitesCount, int bedsCount, String neighborhood) {
+    public void add(SaleType saleType, ResidenceType residenceType, double price, String description, String address, int number, String neighborhood, String city, String country, int bathroomsCount, int suitesCount, int bedsCount) {
         manager.getTransaction().begin();
         Residence residence = new Residence();
 
@@ -106,13 +106,16 @@ public class ResidenceDAO extends CustomDAO<Residence> {
         residence.setPrice(price);
 
         residence.setAddress(address);
-        residence.setCountry(country);
-        residence.setCity(city);
+        residence.setNumber(number);
         residence.setNeighborhood(neighborhood);
+        residence.setCity(city);
+        residence.setCountry(country);
 
         residence.setBathrooms(bathroomsCount);
         residence.setSuites(suitesCount);
         residence.setBeds(bedsCount);
+
+        residence.setDescription(description);
 
         manager.persist(residence);
         manager.getTransaction().commit();

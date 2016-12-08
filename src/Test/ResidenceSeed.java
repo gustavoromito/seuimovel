@@ -5,6 +5,7 @@ import DAO.ResidenceTypeDAO;
 import DAO.SaleTypeDAO;
 import Model.ResidenceType;
 import Model.SaleType;
+import Utils.Utils;
 
 public class ResidenceSeed {
     public static void main (String args[]) {
@@ -24,10 +25,12 @@ public class ResidenceSeed {
         ResidenceType commercialType = residenceTypeDAO.get(ResidenceType.TYPE_COMMERCIAL);
         ResidenceType ruralType = residenceTypeDAO.get(ResidenceType.TYPE_RURAL);
 
-        residenceDAO.add(sellSaleType, residentialType, "Rua Paula Rodrigues", 200.0, "Brasil", "São Paulo", 0, 5, 1, "Jardim Piratining");
-        residenceDAO.add(sellSaleType, commercialType, "Rua Rogerio Carvalho", 100.0, "Brasil", "Osasco", 1, 0, 5, "Bairro Massa");
-        residenceDAO.add(sellSaleType, ruralType, "Rua Antonio João", 150.0, "Angola", "Cidade", 5, 2, 1, "God of War");
-        residenceDAO.add(rentSaleType, residentialType, "Rua Bernini", 201.0, "Espanha", "Cidade", 2, 0, 2, "BairrOpa");
-        residenceDAO.add(rentSaleType, commercialType, "Rua Michelangelo", 10.5, "Australia", "Cidade", 3, 1, 0, "Teste");
+        String description = Utils.LOREM_IPSUM_DESCRIPTION;
+
+        residenceDAO.add(sellSaleType, residentialType, 200.0, description, "Rua Paula Rodrigues", 126, "Jardim Piratininga", "São Paulo", "Brasil", 0, 5, 1);
+        residenceDAO.add(sellSaleType, commercialType, 100.0, description, "Rua Rogerio Carvalho", 95, "Bairro Massa", "Osasco", "Brasil", 1, 0, 5);
+        residenceDAO.add(sellSaleType, ruralType, 150.0, description, "Rua Antonio João", 1000, "God of War", "Cidade", "Angola", 5, 2, 1);
+        residenceDAO.add(rentSaleType, residentialType, 201.0, description, "Rua Bernini", 22, "BairrOpa", "Cidade", "Espanha", 2, 0, 2);
+        residenceDAO.add(rentSaleType, commercialType, 10.5, description, "Rua Michelangelo", 4545, "Teste", "Cidade", "Australia", 3, 1, 0);
     }
 }
