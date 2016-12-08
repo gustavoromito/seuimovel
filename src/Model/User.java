@@ -20,13 +20,13 @@ public class User {
     private String LastName;
 
     @OneToMany (mappedBy = "ResponsibleUser")
-    private Collection<Residence> AdvertisedResidences = new LinkedList<>();
+    private Collection<Residence> AdvertisedResidences = new LinkedList<Residence>();
 
     @ManyToMany
-    private Collection<Residence> InterestingResidences = new LinkedList<>();
+    private Collection<Residence> InterestingResidences = new LinkedList<Residence>();
 
     @ManyToMany
-    private Collection<Residence> FavoriteResidences = new LinkedList<>();
+    private Collection<Residence> FavoriteResidences = new LinkedList<Residence>();
 
     //Getters and Setters
     public long getId() {

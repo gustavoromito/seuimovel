@@ -56,7 +56,7 @@ public class Residence {
     private User ResponsibleUser;
 
     @OneToMany
-    private Collection<Picture> ResidencePictures = new LinkedList<>();
+    private Collection<Picture> ResidencePictures = new LinkedList<Picture>();
 
     @OneToOne
     private ResidenceType Type;

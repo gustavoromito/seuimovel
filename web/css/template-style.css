@@ -1,0 +1,134 @@
+html, body {
+    color: #000000;
+    background-color: #f9f9f9;
+    height: 100%;
+    font-family: ff-clan-web-pro, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 0.875em;
+    line-height: 1.71429;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+.text-input:hover {
+    border-color: #D6D6D5;
+}
+
+.text-input {
+    margin-bottom: 0;
+    height: 50px;
+    color: #000000;
+    font-weight: 500;
+    width: 100%;
+    padding: 8px 18px;
+    font-size: 14px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E4;
+    border-radius: 0;
+    outline: none;
+}
+
+.filter-input {
+    margin-bottom: 0;
+    height: 50px;
+    color: #000000;
+    font-weight: 500;
+    width: 50%;
+    padding: 8px 18px;
+    font-size: 14px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E4;
+    border-radius: 0;
+    outline: none;
+}
+
+input {
+    line-height: normal;
+}
+
+nav {
+    height: 44px;
+    background-color: #ffac2e;
+}
+
+nav img.logo {
+    height: 100%;
+    padding:10px;
+    display: block;
+    margin:auto;
+}
+
+nav #user-icon-container {
+    height:calc(100% - 10px);
+    width: 120px;
+    float: right;
+    display: inline-block;
+    margin:5px;
+    border: 1px solid #fff;
+    border-radius: 20px;
+}
+
+nav #user-icon-container .action-btn {
+    display: inline-block;
+    padding: 0;
+    float: right;
+    margin: 7px 20px;
+    color: #ffffff;
+    font-weight:normal;
+    text-transform: capitalize;
+}
+
+nav #user-icon-container img.profile-icon {
+    display: inline-block;
+    height: 100%;
+    float: left;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 984px;
+    display: block;
+    margin:auto;
+}
+
+button {
+    -webkit-appearance: button;
+}
+
+.btn {
+    display: block;
+    vertical-align: middle;
+    font: inherit;
+    text-align: center;
+    margin: 0;
+    cursor: pointer;
+    overflow: visible;
+    padding: 15px 31px;
+    font-size: 16px;
+    font-family: ff-clan-web-pro, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 600;
+    border-radius: 0px;
+    text-transform: uppercase;
+    outline: none;
+    line-height: 18px;
+    position: relative;
+}
+
+.search-btn {
+    background-color: #11939A;
+    border: 1px solid #11939A;
+    color: #FFF;
+    margin:auto;
+}
+
+.search-btn:hover {
+    background-color: #0c6c71;
+    border-color: #0c6c71;
+}
