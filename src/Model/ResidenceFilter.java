@@ -3,9 +3,11 @@ package Model;
 public class ResidenceFilter {
     public static final int INVALID_INT_VALUE = -1;
     public static final String WHATEVER = "%%";
+    private static final double PRICE_LOWER_DEFAULT = 0;
+    private static final double PRICE_BIGGEST_DEFAULT = Double.MAX_VALUE;
 
-    private double priceLower = 0;
-    private double priceBiggest = Double.MAX_VALUE;
+    private double priceLower = PRICE_LOWER_DEFAULT;
+    private double priceBiggest = PRICE_BIGGEST_DEFAULT;
     private String country = WHATEVER;
     private String city = WHATEVER;
     private String neighborhood = WHATEVER;
@@ -15,6 +17,12 @@ public class ResidenceFilter {
     private int carSpotsCount = INVALID_INT_VALUE;
 
     public void setPrice(double priceLower, double priceBiggest) {
+        if (priceLower == INVALID_INT_VALUE) {
+            priceLower = 0;
+        }
+        if (priceBiggest == INVALID_INT_VALUE) {
+            priceBiggest = PRICE_BIGGEST_DEFAULT;
+        }
         this.priceLower = priceLower;
         this.priceBiggest = priceBiggest;
     }
@@ -28,14 +36,23 @@ public class ResidenceFilter {
     }
 
     public String getCountry() {
+        if (country.isEmpty()) {
+            return WHATEVER;
+        }
         return country;
     }
 
     public void setCountry(String country) {
+        if (country.isEmpty()) {
+            country = WHATEVER;
+        }
         this.country = country;
     }
 
     public void setCity(String city) {
+        if (city.isEmpty()) {
+            city = WHATEVER;
+        }
         this.city = city;
     }
 
@@ -64,6 +81,9 @@ public class ResidenceFilter {
     }
 
     public void setNeighborhood(String neighborhood) {
+        if (neighborhood.isEmpty()) {
+            neighborhood = WHATEVER;
+        }
         this.neighborhood = neighborhood;
     }
 
