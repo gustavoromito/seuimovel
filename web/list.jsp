@@ -23,6 +23,12 @@
     <jsp:useBean id="filter" class="Model.ResidenceFilter"/>
 
     <%
+        int saleTypeId = Utils.parseInt(request, "sale-type");
+        filter.setSaleTypeId(saleTypeId);
+
+        int residenceTypeId = Utils.parseInt(request, "residence-type");
+        filter.setResidenceTypeId(residenceTypeId);
+
         double priceLower = Utils.parseDouble(request, "price-lower");
         double priceBiggest = Utils.parseDouble(request, "price-biggest");
         filter.setPrice(priceLower, priceBiggest);
@@ -34,8 +40,14 @@
         String neighborhood = request.getParameter("neighborhood");
         filter.setNeighborhood(neighborhood);
 
-        int bedsCount = Utils.parseInt(request, "beds-count");
+        int bedsCount = Utils.parseInt(request, "beds");
         filter.setBedsCount(bedsCount);
+        int bathrooms = Utils.parseInt(request, "bathrooms");
+        filter.setBathroomsCount(bathrooms);
+        int suites = Utils.parseInt(request, "suites");
+        filter.setSuitesCount(suites);
+        int carSpots = Utils.parseInt(request, "carSpots");
+        filter.setCarSpotsCount(carSpots);
     %>
 
     <%
@@ -47,7 +59,9 @@
                     Country: <%=residence.getCountry()%> <br>
                     City: <%=residence.getCity()%> <br>
                     Neighborhood: <%=residence.getNeighborhood()%> <br>
+                    Bedrooms: <%=residence.getBeds()%> <br>
                     Bathrooms: <%=residence.getBathrooms()%> <br>
+                    Suites: <%=residence.getSuites()%> <br>
                 </p>
             </div>
         <% }

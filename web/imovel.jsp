@@ -22,7 +22,7 @@
 
 <%
     ResidenceDAO dao = new ResidenceDAO();
-    List<Residence> residences = dao.findAll();
+    List<Residence> residences = dao.getAll();
 
     for (Residence residence : residences) { %>
         <p><%residence.getAddress();%></p>

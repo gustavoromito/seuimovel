@@ -2,7 +2,7 @@ package Model;
 
 public class ResidenceFilter {
     public static final int INVALID_INT_VALUE = -1;
-    public static final String WHATEVER = "%%";
+    private static final String WHATEVER = "%%";
     private static final double PRICE_LOWER_DEFAULT = 0;
     private static final double PRICE_BIGGEST_DEFAULT = Double.MAX_VALUE;
 
@@ -15,6 +15,8 @@ public class ResidenceFilter {
     private int bathroomsCount = INVALID_INT_VALUE;
     private int suitesCount = INVALID_INT_VALUE;
     private int carSpotsCount = INVALID_INT_VALUE;
+    private int saleTypeId;
+    private int residenceTypeId;
 
     public void setPrice(double priceLower, double priceBiggest) {
         if (priceLower == INVALID_INT_VALUE) {
@@ -43,14 +45,14 @@ public class ResidenceFilter {
     }
 
     public void setCountry(String country) {
-        if (country.isEmpty()) {
+        if (country == null || country.isEmpty()) {
             country = WHATEVER;
         }
         this.country = country;
     }
 
     public void setCity(String city) {
-        if (city.isEmpty()) {
+        if (city == null || city.isEmpty()) {
             city = WHATEVER;
         }
         this.city = city;
@@ -81,7 +83,7 @@ public class ResidenceFilter {
     }
 
     public void setNeighborhood(String neighborhood) {
-        if (neighborhood.isEmpty()) {
+        if (neighborhood == null || neighborhood.isEmpty()) {
             neighborhood = WHATEVER;
         }
         this.neighborhood = neighborhood;
@@ -101,5 +103,21 @@ public class ResidenceFilter {
 
     public void setCarSpotsCount(int carSpotsCount) {
         this.carSpotsCount = carSpotsCount;
+    }
+
+    public void setSaleTypeId(int saleTypeId) {
+        this.saleTypeId = saleTypeId;
+    }
+
+    public int getSaleTypeId() {
+        return saleTypeId;
+    }
+
+    public void setResidenceTypeId(int residenceTypeId) {
+        this.residenceTypeId = residenceTypeId;
+    }
+
+    public int getResidenceTypeId() {
+        return residenceTypeId;
     }
 }
