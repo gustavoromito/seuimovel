@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.NumberFormat;
 
 public class Utils {
-    private static final double INVALID_DOUBLE_VALUE = -1;
-    private static final int INVALID_INTEGER_VALUE = -1;
+    public static final double INVALID_DOUBLE_VALUE = -1;
+    public static final int INVALID_INTEGER_VALUE = -1;
     public static final String LOREM_IPSUM_DESCRIPTION = "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum";
 
     public static double parseDouble(HttpServletRequest request, String key) {

@@ -94,14 +94,13 @@ public class ResidenceDAO extends CustomDAO<Residence> {
 
         List<Residence> residences = query.getResultList();
         Collections.sort(residences, new ResidenceComparator());
-        Collections.reverse(residences);
         return residences;
     }
 
     public class ResidenceComparator implements Comparator<Residence> {
 
         public int compare(Residence one, Residence two) {
-            return Boolean.compare(one.isHighlighted(), two.isHighlighted());
+            return -Boolean.compare(one.isHighlighted(), two.isHighlighted());
         }
     }
 
@@ -112,7 +111,6 @@ public class ResidenceDAO extends CustomDAO<Residence> {
     }
 
     public void add(User responsibleUser, SaleType saleType, ResidenceType residenceType, double price, String description, String address, int number, String neighborhood, String city, String country, int bathroomsCount, int suitesCount, int bedsCount, Picture picture) {
-        manager.getTransaction().begin();
         Residence residence = new Residence();
 
         residence.setResponsibleUser(responsibleUser);
@@ -134,6 +132,13 @@ public class ResidenceDAO extends CustomDAO<Residence> {
         residence.addPicture(picture);
         residence.setCreated(Calendar.getInstance());
 
+        add(residence);
+    }
+
+    public void add(Residence residence) {
+        residence.setCreated(Calendar.getInstance());
+
+        manager.getTransaction().begin();
         manager.persist(residence);
         manager.getTransaction().commit();
     }

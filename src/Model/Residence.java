@@ -13,6 +13,8 @@ import java.util.List;
  */
 @Entity
 public class Residence {
+    private static final String PLEASE_MESSAGE = "Por favor, ";
+    private static final String PLEASE_MESSAGE_INSERT = PLEASE_MESSAGE + "insira ";
     //Attributes (mapped into table columns)
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -270,4 +272,42 @@ public class Residence {
         }
         return residencePictures.get(i);
     }
+
+    public Validation isValid() {
+        Validation validation = new Validation();
+        String message = null;
+
+        double price = getPrice();
+        if (price <= 0) {
+            message = PLEASE_MESSAGE_INSERT + "um preço maior que zero.";
+        } else if(getSaleType() == null){
+            message = PLEASE_MESSAGE + "escolha se seu imóvel é para Venda ou Aluguel.";
+        } else if (getType() == null) {
+            message = PLEASE_MESSAGE + "escolha o tipo do seu imóvel.";
+        } else if (getAddress() == null) {
+            message = PLEASE_MESSAGE_INSERT + "a Rua.";
+        } else if (getNeighborhood() == null) {
+            message = PLEASE_MESSAGE_INSERT + "o Bairro.";
+        } else if (getCity() == null) {
+            message = PLEASE_MESSAGE_INSERT + "a Cidade.";
+        } else if (getCountry() == null) {
+            message = PLEASE_MESSAGE_INSERT + "o País.";
+        } else if (getNumber() <= 0) {
+            message = PLEASE_MESSAGE_INSERT + "o Número.";
+        } else if (getDescription() == null) {
+            message = PLEASE_MESSAGE_INSERT + "a Descrição";
+        } else if (getBeds() <= 0) {
+            message = PLEASE_MESSAGE_INSERT + "a quantidade de quartos.";
+        } else if (getBathrooms() <= 0) {
+            message = PLEASE_MESSAGE_INSERT + "o número de banheiros.";
+        } else if (getResidencePictures().size() == 0) {
+            message = PLEASE_MESSAGE_INSERT + "ao menos uma imagem.";
+        }
+
+        validation.setIsValid(message == null);
+        validation.setMessage(message);
+        return validation;
+    }
+
+
 }

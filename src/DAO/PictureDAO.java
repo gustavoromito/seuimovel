@@ -13,12 +13,13 @@ public class PictureDAO extends CustomDAO<Picture>{
         return query.getResultList();
     }
 
-    public void add(String path) {
+    public Picture add(String path) {
         manager.getTransaction().begin();
         Picture picture = new Picture();
         picture.setPath(path);
         picture.setCreatedAt(Calendar.getInstance());
         manager.persist(picture);
         manager.getTransaction().commit();
+        return picture;
     }
 }
