@@ -1,0 +1,28 @@
+.login-div {
+    background: #f4c077;
+    width: 475px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    overflow: hidden;
+    padding: 10px;
+    border: 4px solid #ffac2e;
+    display: table-cell;
+}
+
+.main-title {
+    color: #ffffff;
+}
+
+.login-label {
+    font-size: medium;
+    color: #ffffff;
+}
+
+.form-line {
+    margin-bottom: 10px;
+}
+
+.error-field {
+    border-color: #ff0000;
+}

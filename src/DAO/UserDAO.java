@@ -1,11 +1,10 @@
 package DAO;
 
 import Model.User;
-
-import javax.persistence.TypedQuery;
 import java.util.List;
+import javax.persistence.TypedQuery;
 
-public class UserDAO extends CustomDAO<User>{
+public class UserDAO extends CustomDAO<User> {
     @Override
     public List<User> getAll() {
         TypedQuery<User> query = manager.createQuery("SELECT u FROM User u", User.class);
@@ -27,5 +26,16 @@ public class UserDAO extends CustomDAO<User>{
         TypedQuery<User> query = manager.createQuery("SELECT u FROM User u WHERE Email LIKE ?", User.class);
         query.setParameter(1, emaill);
         return query.getSingleResult();
+    }
+
+    public void add(User user) {
+        manager.getTransaction().begin();
+        User newuser = new User();
+        newuser.setName(user.getName());
+        newuser.setLastName(user.getLastName());
+        newuser.setPassword(user.getPassword());
+        newuser.setEmail(user.getEmail());
+        manager.persist(newuser);
+        manager.getTransaction().commit();
     }
 }
