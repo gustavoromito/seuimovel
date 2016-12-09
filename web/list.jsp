@@ -17,7 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-    <%@include file="header.html" %>
+    <%@include file="header.jsp" %>
 
     <jsp:useBean id="residenceDao" class="DAO.ResidenceDAO"/>
     <jsp:useBean id="filter" class="Model.ResidenceFilter"/>

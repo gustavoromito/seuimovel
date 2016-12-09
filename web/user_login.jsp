@@ -17,7 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-    <%@include file="header.html" %>
+    <%@include file="header.jsp" %>
     <div class="wrapper" style="margin-top: 10px">
         <div class="login-div">
             <h1 class="main-title">Login</h1>
@@ -25,18 +25,20 @@
                 <div class="bootstrap-form-group">
                     <label for="username" class="bootstrap-control-label col-sm-2" style="color: #ffffff; font-size: medium">Login: </label>
                     <div class="col-sm-10">
-                        <input id="username" class="text-input" type="text">
+                        <input name="email" id="username" class="text-input" type="text" required>
                     </div>
                 </div>
                 <div class="bootstrap-form-group">
                     <label for="password" class="bootstrap-control-label col-sm-2" style="color: #ffffff; font-size: medium">Senha: </label>
                     <div class="col-sm-10">
-                        <input id="password" class="text-input" type="password">
+                        <input name="password" id="password" class="text-input" type="password" required>
                     </div>
                 </div>
                 <div class="bootstrap-form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn search-btn">Fazer login</button>
+                        <a href="user_login.jsp">
+                            <button type="submit" class="btn search-btn">Fazer login</button>
+                        </a>
                     </div>
                 </div>
             </form>
@@ -47,6 +49,21 @@
 
             <a type="button" class="btn search-btn" href="user_create.jsp">Cadastrar-se</a>
         </div>
+        <input type="hidden" name="userId">
+
+        <jsp:useBean id="user" class="Model.User"/>
+        <jsp:useBean id="userDAO" class="DAO.UserDAO"/>
+        <%
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            user.setEmail(email);
+            user.setPassword(password);
+
+            user = userDAO.login(user);
+            if (user != null) {
+               response.sendRedirect("index.jsp?name=" + user.getName() + "&email=" + user.getEmail());
+            }
+        %>
     </div>
 </body>
 </html>

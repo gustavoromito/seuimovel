@@ -17,7 +17,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     </head>
     <body>
-        <%@include file="header.html" %>
+        <%@include file="header.jsp" %>
         <div class="wrapper" style="margin-top: 10px">
             <div class="login-div" style="width: 920px">
                 <h1 class="main-title">Cadastro de usuário</h1>

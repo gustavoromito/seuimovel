@@ -7,7 +7,14 @@
         <div class="wrapper" style="height: 100%;">
             <div id="user-icon-container">
                 <img class="profile-icon" src="images/profile-icon.png" />
-                <a class="btn action-btn">Entrar</a>
+                <%
+                    String name = request.getParameter("name");
+                    if (name == null) { %>
+                        <a  href="user_login.jsp" class="btn action-btn">Entrar</a>
+                    <%} else { %>
+                        <a class="btn action-btn"><%=name%></a>
+                    <%}
+                %>
             </div>
             <img class="logo" src="images/home-icon.png" />
         </div>

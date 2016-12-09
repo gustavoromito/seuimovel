@@ -30,7 +30,7 @@
 </head>
 <body>
 
-<%@include file="header.html" %>
+<%@include file="header.jsp" %>
 
 <%
     List<Picture> residencePictures = new ArrayList<Picture>(residence.getResidencePictures());
@@ -74,7 +74,7 @@
                     } else {
                         for (int i = 0; i < length; i++) {
                             %>
-                            <img class="imovel_pic _1" src="http://www.365flats.com/cp/pages/uploads/2.jpg">
+                            <img class="imovel_pic _1" src="<%=residencePictures.get(i).getPath()%>">
                             <%
                         }
                     }

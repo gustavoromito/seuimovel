@@ -38,4 +38,16 @@ public class UserDAO extends CustomDAO<User> {
         manager.persist(newuser);
         manager.getTransaction().commit();
     }
+
+    public User login(User user) {
+        TypedQuery<User> query = manager.createQuery("SELECT u FROM User u WHERE Email LIKE :email AND Password LIKE :password", User.class);
+        query.setParameter("email", user.getEmail());
+        query.setParameter("password", user.getPassword());
+
+        List<User> resultList = query.getResultList();
+        if(resultList == null || resultList.isEmpty()) {
+            return null;
+        }
+        return query.getSingleResult();
+    }
 }

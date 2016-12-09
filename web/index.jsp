@@ -10,7 +10,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     </h:head>
     <h:body>
-        <%@include file="header.html" %>
+        <%@include file="header.jsp" %>
 
         <div class="wrapper" style="padding-top: 100px;">
             <style>
@@ -36,11 +36,17 @@
                 <button id="search" class="btn search-btn" style="display: inline-block; float: left; margin: 10px;">
                     Buscar
                 </button>
-                <a href="create_imovel.jsp">
-                    <button class="btn search-btn" style="display: inline-block; float: left; margin: 10px;">
-                        Adicionar seu Imovel
-                    </button>
-                </a>
+
+                <%
+                    String email = request.getParameter("email");
+                    if (email != null) {%>
+                        <a href="create_imovel.jsp?email=<%=email%>">
+                            <button class="btn search-btn" style="display: inline-block; float: left; margin: 10px;">
+                                Adicionar seu Imovel
+                            </button>
+                        </a>
+                    <%}
+                %>
             </div>
         </div>
     </h:body>

@@ -65,7 +65,7 @@
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzoOgR5EDgEOkkZd_D0aFZp7CyqxberXI&callback=initMap">
         </script>
 
-        <%@include file="header.html" %>
+        <%@include file="header.jsp" %>
         <style>
             html, body { height: 100%; margin: 0; padding: 0; }
             #map { height: 200px; }
@@ -82,6 +82,7 @@
                 color: #000000;
             }
         </style>
+        <jsp:useBean id="userDAO" class="DAO.UserDAO" />
         <jsp:useBean id="pictureDAO" class="DAO.PictureDAO" />
         <jsp:useBean id="saleTypeDAO" class="DAO.SaleTypeDAO" />
         <jsp:useBean id="residenceTypeDAO" class="DAO.ResidenceTypeDAO" />
@@ -90,7 +91,7 @@
         <div class="wrapper" style="margin-top: 10px">
             <div class="login-div" style="width: 920px">
                 <h1 class="main-title">Cadastro de Imóvel</h1>
-                <form class="bootstrap-form-horizontal" id="user_creation_form" action="create_imovel.jsp" method="post">
+                <form class="bootstrap-form-horizontal" id="user_creation_form" action="create_imovel.jsp?email=<%=request.getParameter("email")%>" method="post">
                     <div class="bootstrap-form-group">
                         <label for="saleType" class="bootstrap-control-label col-sm-3" style="color: #ffffff; font-size: medium">Tipo de Venda: </label>
                         <div class="col-sm-9">
@@ -303,6 +304,12 @@
             double lng = Utils.parseDouble(request, "longitude");
 
             if(price != Utils.INVALID_DOUBLE_VALUE && address != null && neighborhood != null && description != null) {
+                String email = request.getParameter("email");
+                User user = userDAO.get(email);
+                if (user != null) {
+                    residence.setResponsibleUser(user);
+                }
+
                 SaleType saleType = saleTypeDAO.get(request.getParameter("saleType"));
                 residence.setSaleType(saleType);
 
