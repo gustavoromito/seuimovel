@@ -40,6 +40,7 @@ public class Residence {
 
     private boolean Highlight;
 
+    @Column(length = 10000000)
     private String Description;
 
     private double SquareFootage;

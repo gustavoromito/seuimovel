@@ -11,6 +11,7 @@ public class ResidenceFilter {
     private String country = WHATEVER;
     private String city = WHATEVER;
     private String neighborhood = WHATEVER;
+    private String address = WHATEVER;
     private int bedsCount = INVALID_INT_VALUE;
     private int bathroomsCount = INVALID_INT_VALUE;
     private int suitesCount = INVALID_INT_VALUE;
@@ -38,10 +39,7 @@ public class ResidenceFilter {
     }
 
     public String getCountry() {
-        if (country.isEmpty()) {
-            return WHATEVER;
-        }
-        return country;
+        return getStringLike(country);
     }
 
     public void setCountry(String country) {
@@ -52,14 +50,11 @@ public class ResidenceFilter {
     }
 
     public void setCity(String city) {
-        if (city == null || city.isEmpty()) {
-            city = WHATEVER;
-        }
         this.city = city;
     }
 
     public String getCity() {
-        return city;
+        return getStringLike(city);
     }
 
     public int getBedsCount() {
@@ -79,13 +74,10 @@ public class ResidenceFilter {
     }
 
     public String getNeighborhood() {
-        return neighborhood;
+        return getStringLike(neighborhood);
     }
 
     public void setNeighborhood(String neighborhood) {
-        if (neighborhood == null || neighborhood.isEmpty()) {
-            neighborhood = WHATEVER;
-        }
         this.neighborhood = neighborhood;
     }
 
@@ -119,5 +111,20 @@ public class ResidenceFilter {
 
     public int getResidenceTypeId() {
         return residenceTypeId;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAddress() {
+        return getStringLike(address);
+    }
+
+    private String getStringLike(String text) {
+        if(text == null || text.isEmpty()) {
+            return WHATEVER;
+        }
+        return text + "%";
     }
 }

@@ -20,6 +20,7 @@ public class ResidenceDAO extends CustomDAO<Residence> {
     private static final String PARAMETER_KEY_NEIGHBORHOOD = "neighborhood";
     private static final String PARAMETER_KEY_SALE_TYPE = "saleType";
     private static final String PARAMETER_KEY_RESIDENCE_TYPE = "residenceType";
+    private static final String PARAMETER_KEY_ADDRESS = "address";
     private final EntityManager manager;
 
     public ResidenceDAO() {
@@ -39,7 +40,8 @@ public class ResidenceDAO extends CustomDAO<Residence> {
                 " AND Price <= :" + PARAMETER_KEY_PRICE_BIGGEST +
                 " AND Country LIKE :" + PARAMETER_KEY_COUNTRY +
                 " AND City LIKE :" + PARAMETER_KEY_CITY +
-                " AND Neighborhood LIKE :" + PARAMETER_KEY_NEIGHBORHOOD;
+                " AND Neighborhood LIKE :" + PARAMETER_KEY_NEIGHBORHOOD +
+                " AND Address LIKE :" + PARAMETER_KEY_ADDRESS;
 
         List<String> expressions = new LinkedList<>();
         addExpression(expressions, filter.getSaleTypeId(), "AND SaleType_Id = :" + PARAMETER_KEY_SALE_TYPE);
@@ -70,6 +72,9 @@ public class ResidenceDAO extends CustomDAO<Residence> {
                     break;
                 case PARAMETER_KEY_NEIGHBORHOOD:
                     query.setParameter(PARAMETER_KEY_NEIGHBORHOOD, filter.getNeighborhood());
+                    break;
+                case PARAMETER_KEY_ADDRESS:
+                    query.setParameter(PARAMETER_KEY_ADDRESS, filter.getAddress());
                     break;
                 case PARAMETER_KEY_BATHROOMS:
                     query.setParameter(PARAMETER_KEY_BATHROOMS, filter.getBathroomsCount());
