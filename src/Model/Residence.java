@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by antonio on 29/09/16.
@@ -57,7 +58,7 @@ public class Residence {
     private User ResponsibleUser;
 
     @OneToMany
-    private Collection<Picture> ResidencePictures = new LinkedList<Picture>();
+    private List<Picture> ResidencePictures = new LinkedList<Picture>();
 
     @OneToOne
     private ResidenceType Type;
@@ -223,7 +224,7 @@ public class Residence {
         ResidencePictures.add(pic);
     }
 
-    public Collection<Picture> getResidencePictures() {
+    public List<Picture> getResidencePictures() {
         return ResidencePictures;
     }
 
@@ -249,5 +250,15 @@ public class Residence {
 
     public void setResponsibleUser(User responsibleUser) {
         ResponsibleUser = responsibleUser;
+    }
+
+    public Picture getPicture(int i) {
+        List<Picture> residencePictures = getResidencePictures();
+        if(residencePictures == null || i >= residencePictures.size()) {
+            Picture picture = new Picture();
+            picture.setPath("");
+            return picture;
+        }
+        return residencePictures.get(i);
     }
 }

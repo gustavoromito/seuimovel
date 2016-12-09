@@ -245,9 +245,15 @@
                 <%
                     List<Residence> residences = residenceDao.get(filter);
                     for (Residence residence : residences) { %>
-                        <div class="search-result">
+                        <div class="search-result" style="position: relative">
+                            <%
+                                if (residence.isHighlighted()) {%>
+                            <img src="images/ic_highlight.png" style="position: absolute; top: 0; left: 0; width: 100px; height: auto; z-index: 999">
+                                <%}
+                            %>
+
                             <div class="image-container">
-                                <img src="http://www.365flats.com/cp/pages/uploads/2.jpg">
+                                <img src="<%=residence.getPicture(0).getPath()%>">
                                 <div class="price-container">
                                     <p>Preço</p>
                                     <h2><%=Utils.parseMoney(residence.getPrice())%></h2>
