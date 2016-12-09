@@ -3,11 +3,12 @@ package DAO;
 import Model.*;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class ResidenceDAO {
+public class ResidenceDAO extends CustomDAO<Residence> {
 
     private static final String PARAMETER_KEY_BED = "bed";
     private static final String PARAMETER_KEY_PRICE_LOWER = "priceLower";
@@ -18,6 +19,9 @@ public class ResidenceDAO {
     private static final String PARAMETER_KEY_CAR_SPOTS = "carSpots";
     private static final String PARAMETER_KEY_SUITES = "suites";
     private static final String PARAMETER_KEY_NEIGHBORHOOD = "neighborhood";
+    private static final String PARAMETER_KEY_SALE_TYPE = "saleType";
+    private static final String PARAMETER_KEY_RESIDENCE_TYPE = "residenceType";
+    private static final String PARAMETER_KEY_ADDRESS = "address";
     private final EntityManager manager;
 
     public ResidenceDAO() {
@@ -25,7 +29,8 @@ public class ResidenceDAO {
         manager = factory.createEntityManager();
     }
 
-    public List<Residence> findAll() {
+    @Override
+    public List<Residence> getAll() {
         TypedQuery<Residence> query = manager.createQuery( "SELECT r FROM Residence r", Residence.class);
         return query.getResultList();
     }
@@ -36,9 +41,12 @@ public class ResidenceDAO {
                 " AND Price <= :" + PARAMETER_KEY_PRICE_BIGGEST +
                 " AND Country LIKE :" + PARAMETER_KEY_COUNTRY +
                 " AND City LIKE :" + PARAMETER_KEY_CITY +
-                " AND Neighborhood LIKE :" + PARAMETER_KEY_NEIGHBORHOOD;
+                " AND Neighborhood LIKE :" + PARAMETER_KEY_NEIGHBORHOOD +
+                " AND Address LIKE :" + PARAMETER_KEY_ADDRESS;
 
         List<String> expressions = new LinkedList<>();
+        addExpression(expressions, filter.getSaleTypeId(), "AND SaleType_Id = :" + PARAMETER_KEY_SALE_TYPE);
+        addExpression(expressions, filter.getResidenceTypeId(), "AND Type_Id = :" + PARAMETER_KEY_RESIDENCE_TYPE);
         addExpression(expressions, filter.getBedsCount(), "AND Beds = :" + PARAMETER_KEY_BED);
         addExpression(expressions, filter.getBathroomsCount(), "AND Bathrooms = :" + PARAMETER_KEY_BATHROOMS);
         addExpression(expressions, filter.getSuitesCount(), "AND Suites = :" + PARAMETER_KEY_SUITES);
@@ -66,6 +74,9 @@ public class ResidenceDAO {
                 case PARAMETER_KEY_NEIGHBORHOOD:
                     query.setParameter(PARAMETER_KEY_NEIGHBORHOOD, filter.getNeighborhood());
                     break;
+                case PARAMETER_KEY_ADDRESS:
+                    query.setParameter(PARAMETER_KEY_ADDRESS, filter.getAddress());
+                    break;
                 case PARAMETER_KEY_BATHROOMS:
                     query.setParameter(PARAMETER_KEY_BATHROOMS, filter.getBathroomsCount());
                     break;
@@ -74,6 +85,12 @@ public class ResidenceDAO {
                     break;
                 case PARAMETER_KEY_BED:
                     query.setParameter(PARAMETER_KEY_BED, filter.getBedsCount());
+                    break;
+                case PARAMETER_KEY_SALE_TYPE:
+                    query.setParameter(PARAMETER_KEY_SALE_TYPE, filter.getSaleTypeId());
+                    break;
+                case PARAMETER_KEY_RESIDENCE_TYPE:
+                    query.setParameter(PARAMETER_KEY_RESIDENCE_TYPE, filter.getResidenceTypeId());
                     break;
             }
         }
@@ -86,27 +103,30 @@ public class ResidenceDAO {
         }
     }
 
-    public void add(String address, double price, String country, String city, int bathroomsCount, int suitesCount, int bedsCount, String neighborhood) {
+    public void add(User responsibleUser, SaleType saleType, ResidenceType residenceType, double price, String description, String address, int number, String neighborhood, String city, String country, int bathroomsCount, int suitesCount, int bedsCount, Picture picture) {
         manager.getTransaction().begin();
         Residence residence = new Residence();
-        residence.setAddress(address);
+
+        residence.setResponsibleUser(responsibleUser);
+        residence.setType(residenceType);
+        residence.setSaleType(saleType);
         residence.setPrice(price);
-        residence.setCountry(country);
+
+        residence.setAddress(address);
+        residence.setNumber(number);
+        residence.setNeighborhood(neighborhood);
         residence.setCity(city);
+        residence.setCountry(country);
+
         residence.setBathrooms(bathroomsCount);
         residence.setSuites(suitesCount);
         residence.setBeds(bedsCount);
-        residence.setNeighborhood(neighborhood);
-        manager.persist(residence);
-        manager.getTransaction().commit();
-    }
 
-    public void removeAll() {
-        manager.getTransaction().begin();
-        List<Residence> residences = findAll();
-        for (Residence residence : residences) {
-            manager.remove(residence);
-        }
+        residence.setDescription(description);
+        residence.addPicture(picture);
+        residence.setCreated(Calendar.getInstance());
+
+        manager.persist(residence);
         manager.getTransaction().commit();
     }
 
@@ -118,4 +138,5 @@ public class ResidenceDAO {
         if (resultList.size() == 0) return null;
         return query.getSingleResult();
     }
+
 }

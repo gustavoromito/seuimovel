@@ -2,19 +2,30 @@ package Model;
 
 public class ResidenceFilter {
     public static final int INVALID_INT_VALUE = -1;
-    public static final String WHATEVER = "%%";
+    private static final String WHATEVER = "%%";
+    private static final double PRICE_LOWER_DEFAULT = 0;
+    private static final double PRICE_BIGGEST_DEFAULT = Double.MAX_VALUE;
 
-    private double priceLower = 0;
-    private double priceBiggest = Double.MAX_VALUE;
+    private double priceLower = PRICE_LOWER_DEFAULT;
+    private double priceBiggest = PRICE_BIGGEST_DEFAULT;
     private String country = WHATEVER;
     private String city = WHATEVER;
     private String neighborhood = WHATEVER;
+    private String address = WHATEVER;
     private int bedsCount = INVALID_INT_VALUE;
     private int bathroomsCount = INVALID_INT_VALUE;
     private int suitesCount = INVALID_INT_VALUE;
     private int carSpotsCount = INVALID_INT_VALUE;
+    private int saleTypeId;
+    private int residenceTypeId;
 
     public void setPrice(double priceLower, double priceBiggest) {
+        if (priceLower == INVALID_INT_VALUE) {
+            priceLower = 0;
+        }
+        if (priceBiggest == INVALID_INT_VALUE) {
+            priceBiggest = PRICE_BIGGEST_DEFAULT;
+        }
         this.priceLower = priceLower;
         this.priceBiggest = priceBiggest;
     }
@@ -28,10 +39,13 @@ public class ResidenceFilter {
     }
 
     public String getCountry() {
-        return country;
+        return getStringLike(country);
     }
 
     public void setCountry(String country) {
+        if (country == null || country.isEmpty()) {
+            country = WHATEVER;
+        }
         this.country = country;
     }
 
@@ -40,7 +54,7 @@ public class ResidenceFilter {
     }
 
     public String getCity() {
-        return city;
+        return getStringLike(city);
     }
 
     public int getBedsCount() {
@@ -60,7 +74,7 @@ public class ResidenceFilter {
     }
 
     public String getNeighborhood() {
-        return neighborhood;
+        return getStringLike(neighborhood);
     }
 
     public void setNeighborhood(String neighborhood) {
@@ -81,5 +95,36 @@ public class ResidenceFilter {
 
     public void setCarSpotsCount(int carSpotsCount) {
         this.carSpotsCount = carSpotsCount;
+    }
+
+    public void setSaleTypeId(int saleTypeId) {
+        this.saleTypeId = saleTypeId;
+    }
+
+    public int getSaleTypeId() {
+        return saleTypeId;
+    }
+
+    public void setResidenceTypeId(int residenceTypeId) {
+        this.residenceTypeId = residenceTypeId;
+    }
+
+    public int getResidenceTypeId() {
+        return residenceTypeId;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAddress() {
+        return getStringLike(address);
+    }
+
+    private String getStringLike(String text) {
+        if(text == null || text.isEmpty()) {
+            return WHATEVER;
+        }
+        return text + "%";
     }
 }

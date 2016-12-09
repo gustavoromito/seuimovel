@@ -4,9 +4,9 @@ import javax.persistence.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Locale;
+import java.util.List;
 
 /**
  * Created by antonio on 29/09/16.
@@ -43,6 +43,7 @@ public class Residence {
 
     private boolean Highlight;
 
+    @Column(length = 10000000)
     private String Description;
 
     private double SquareFootage;
@@ -59,7 +60,7 @@ public class Residence {
     private User ResponsibleUser;
 
     @OneToMany
-    private Collection<Picture> ResidencePictures = new LinkedList<Picture>();
+    private List<Picture> ResidencePictures = new LinkedList<Picture>();
 
     @OneToOne
     private ResidenceType Type;
@@ -225,7 +226,7 @@ public class Residence {
         ResidencePictures.add(pic);
     }
 
-    public Collection<Picture> getResidencePictures() {
+    public List<Picture> getResidencePictures() {
         return ResidencePictures;
     }
 
@@ -252,7 +253,21 @@ public class Residence {
     public String getFormattedPrice() {
         DecimalFormat formatoDois = new DecimalFormat("##,###,###,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
         formatoDois.setMinimumFractionDigits(2);
-        formatoDois.setParseBigDecimal (true);
+        formatoDois.setParseBigDecimal(true);
         return "R$ " + formatoDois.format(this.getPrice());
+    }
+
+    public void setResponsibleUser(User responsibleUser) {
+        ResponsibleUser = responsibleUser;
+    }
+
+    public Picture getPicture(int i) {
+        List<Picture> residencePictures = getResidencePictures();
+        if(residencePictures == null || i >= residencePictures.size()) {
+            Picture picture = new Picture();
+            picture.setPath("");
+            return picture;
+        }
+        return residencePictures.get(i);
     }
 }

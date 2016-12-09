@@ -35,6 +35,20 @@ body {
     outline: none;
 }
 
+.filter-input {
+    margin-bottom: 0;
+    height: 50px;
+    color: #000000;
+    font-weight: 500;
+    width: 100%;
+    padding: 8px 18px;
+    font-size: 14px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E4;
+    border-radius: 0;
+    outline: none;
+}
+
 input {
     line-height: normal;
 }
