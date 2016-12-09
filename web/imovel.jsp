@@ -37,8 +37,7 @@
     int length = residencePictures.size();
 %>
 <script>
-    <%--var owner_mail = <%=residence.getResponsibleUser().getEmail()%>--%>
-    var owner_mail = "email@email.com";
+    var owner_mail = "<%=residence.getResponsibleUser().getEmail()%>";
     $(document).ready(function() {
         var total_images = <%=length%>;
         var count = <%=length%>;
