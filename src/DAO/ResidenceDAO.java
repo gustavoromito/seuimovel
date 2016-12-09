@@ -3,10 +3,7 @@ package DAO;
 import Model.*;
 
 import javax.persistence.*;
-import java.util.Calendar;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class ResidenceDAO extends CustomDAO<Residence> {
 
@@ -94,7 +91,18 @@ public class ResidenceDAO extends CustomDAO<Residence> {
                     break;
             }
         }
-        return query.getResultList();
+
+        List<Residence> residences = query.getResultList();
+        Collections.sort(residences, new ResidenceComparator());
+        Collections.reverse(residences);
+        return residences;
+    }
+
+    public class ResidenceComparator implements Comparator<Residence> {
+
+        public int compare(Residence one, Residence two) {
+            return Boolean.compare(one.isHighlighted(), two.isHighlighted());
+        }
     }
 
     private void addExpression(List<String> expressions, int value, String expression) {
