@@ -25,7 +25,7 @@
             </style>
             <script>
                 $(document).ready(function () {
-                   $(".search-btn").click(function () {
+                   $("#search").click(function () {
                        window.location.href = "search.jsp?search=" + $("#search-text").val();
                    });
                 });
@@ -33,9 +33,14 @@
             </script>
             <div class="clearfix" style="width: 640px; margin: auto;">
                 <input style="margin: 10px auto; width: 75%; display: inline-block; float: left;" name="search-text" type="text" class="text-input" placeholder="Busque por um bairro" id="search-text" />
-                <button class="btn search-btn" style="display: inline-block; float: left; margin: 10px;">
+                <button id="search" class="btn search-btn" style="display: inline-block; float: left; margin: 10px;">
                     Buscar
                 </button>
+                <a href="create_imovel.jsp">
+                    <button class="btn search-btn" style="display: inline-block; float: left; margin: 10px;">
+                        Adicionar seu Imovel
+                    </button>
+                </a>
             </div>
         </div>
     </h:body>

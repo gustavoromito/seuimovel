@@ -221,6 +221,11 @@ public class Residence {
     }
 
     public User getResponsibleUser() {
+        if (ResponsibleUser == null) {
+            User responseUser = new User();
+            responseUser.setEmail("");
+            return responseUser;
+        }
         return ResponsibleUser;
     }
 
