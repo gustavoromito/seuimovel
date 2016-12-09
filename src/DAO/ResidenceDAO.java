@@ -3,6 +3,7 @@ package DAO;
 import Model.*;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -102,10 +103,11 @@ public class ResidenceDAO extends CustomDAO<Residence> {
         }
     }
 
-    public void add(SaleType saleType, ResidenceType residenceType, double price, String description, String address, int number, String neighborhood, String city, String country, int bathroomsCount, int suitesCount, int bedsCount) {
+    public void add(User responsibleUser, SaleType saleType, ResidenceType residenceType, double price, String description, String address, int number, String neighborhood, String city, String country, int bathroomsCount, int suitesCount, int bedsCount, Picture picture) {
         manager.getTransaction().begin();
         Residence residence = new Residence();
 
+        residence.setResponsibleUser(responsibleUser);
         residence.setType(residenceType);
         residence.setSaleType(saleType);
         residence.setPrice(price);
@@ -121,6 +123,8 @@ public class ResidenceDAO extends CustomDAO<Residence> {
         residence.setBeds(bedsCount);
 
         residence.setDescription(description);
+        residence.addPicture(picture);
+        residence.setCreated(Calendar.getInstance());
 
         manager.persist(residence);
         manager.getTransaction().commit();

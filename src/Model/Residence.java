@@ -246,4 +246,8 @@ public class Residence {
     public String getAddressFull() {
         return getAddress() + ", " + getNumber() + " - " + getNeighborhood() + ", " + getCity() + " - " + getCountry();
     }
+
+    public void setResponsibleUser(User responsibleUser) {
+        ResponsibleUser = responsibleUser;
+    }
 }
