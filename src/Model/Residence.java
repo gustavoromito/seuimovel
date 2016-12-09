@@ -1,9 +1,12 @@
 package Model;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Locale;
 
 /**
  * Created by antonio on 29/09/16.
@@ -240,5 +243,16 @@ public class Residence {
 
     public String getSaleType() {
         return SaleType.getName();
+    }
+
+    public String getAddressFull() {
+        return getAddress() + ", " + getNumber() + " - " + getNeighborhood() + ", " + getCity() + " - " + getCountry();
+    }
+
+    public String getFormattedPrice() {
+        DecimalFormat formatoDois = new DecimalFormat("##,###,###,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
+        formatoDois.setMinimumFractionDigits(2);
+        formatoDois.setParseBigDecimal (true);
+        return "R$ " + formatoDois.format(this.getPrice());
     }
 }

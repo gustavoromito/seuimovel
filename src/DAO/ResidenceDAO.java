@@ -109,4 +109,13 @@ public class ResidenceDAO {
         }
         manager.getTransaction().commit();
     }
+
+    public Residence findById(long residence_id) {
+        String queryExpression = "SELECT r FROM Residence r WHERE Id = ?";
+        TypedQuery<Residence> query = manager.createQuery( queryExpression, Residence.class);
+        query.setParameter(1, residence_id);
+        List<Residence> resultList = query.getResultList();
+        if (resultList.size() == 0) return null;
+        return query.getSingleResult();
+    }
 }
