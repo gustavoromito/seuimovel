@@ -23,7 +23,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SeuImovel | </title>
+    <title>SeuImovel | Imóvel</title>
     <link rel="stylesheet" type="text/css" href="css/template-style.css">
     <link rel="stylesheet" type="text/css" href="css/imovel.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
